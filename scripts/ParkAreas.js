@@ -1,18 +1,41 @@
-import { getAreas } from "./database.js"
-
+import { getAreas } from "./database.js";
+import { renderServices} from "./Services.js"
 
 export const renderAreas = () => {
-    const areas = getAreas();
-    // const servicesToArea = getServicesToArea();
-    let html = '';
-    for (const area of areas) {
-        html += `<div class="destination col-3"> 
-                    <h3 class="text-center">${area.name}</h3>
-                    <div class="services">
-                         <h5 class="">Services</h5> 
-                         <ul class="mx-3">  </ul> 
-                    </div> 
-                </div>`
+  const areas = getAreas();
+  let html = "";
+  //tracks the number of areas in the current row
+  let areaCount = 0;
+
+  for (const area of areas) {
+    if (areaCount === 0) {
+      //starts a new row if the area count is 0
+      html += `<div class="row d-flex justify-content-around mb-2">`;
     }
-    return html;
-}
+
+    //add the area to the current row
+    html += `
+            <div class="destination col-3"> 
+                <h5 class="text-center">${area.name}</h5>
+                <div class="services">
+                    <h6 class="">Services</h6> 
+                    <ul class="mx-3">${renderServices(area)}</ul> 
+                </div> 
+            </div>
+        `;
+    areaCount++;
+
+    //check to see if the number of areas = 3
+    if (areaCount === 3) {
+      //after three areas close the row
+      html += `</div>`;
+      //reset the counter for row
+      areaCount = 0;
+    }
+  }
+  //if there are any areas left that didn't fill the last row then close the row
+  if (areaCount > 0) {
+    html += `</div>`;
+  }
+  return html;
+};
