@@ -1,8 +1,10 @@
 import { getServices, getServicesToArea } from "./database.js"
 
+const services = getServices();
+const servicesToArea = getServicesToArea();
+
 export const renderServices = (area) => {
-    const servicesToArea = getServicesToArea();
-    const services = getServices();
+    
     let html = ''
     for (const obj of servicesToArea) {
         if( area.id === obj.areaId){
@@ -16,4 +18,14 @@ export const renderServices = (area) => {
     }
     return html;
 
+}
+
+export const renderServicesList = () => {
+    let html = '';
+
+    // Loop through all services to generate the HTML
+    for (const service of services) {
+        html += `<div class="col">${service.name}</div>`;
+    }
+    return html;
 }
