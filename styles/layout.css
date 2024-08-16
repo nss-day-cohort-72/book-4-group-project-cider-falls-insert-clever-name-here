@@ -3,8 +3,13 @@
     padding: 0;
 }
 
-body {
-    background-color: rgb(100, 100, 100);
+.container, html, body {
+    background-color: rgb(107, 55, 5);
+}
+
+header, footer {
+    margin: 0 !important;
+    background-color: rgb(107, 55, 5) !important;
 }
 
 h3 {
@@ -22,15 +27,20 @@ img {
 
 main {
     height: 640px;
-    background-color: aqua;
+    background-color: rgb(14, 139, 52);
 }
 
-section:first-child {
-    background-color: green;
+.areas-container {
+    background-color: rgb(18, 114, 47) !important;
 }
 
-section:nth-child(2) {
-    background-color: blue;
+.guest {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    height: 93%;
+    background-color: white;
+    box-shadow: 5px 5px rgba(48, 48, 48, 0.7);
 }
 
 .areas {
@@ -38,7 +48,11 @@ section:nth-child(2) {
 }
 
 .destination {
+    padding: 10px;
+    border-radius: 10px;
+    height: 270px;
     background-color: white;
+    box-shadow: 5px 5px rgba(48, 48, 48, 0.7);
 }
 
 .destination-row {
