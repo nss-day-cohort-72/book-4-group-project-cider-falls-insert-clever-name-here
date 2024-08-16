@@ -1,27 +1,21 @@
 import { getAreas, getGuests } from "./database.js";
-import { renderServices} from "./Services.js"
+import { renderServices } from "./Services.js";
 
-document.addEventListener(
-  "click",
-  (clickEvent) => {
-      const itemClicked = clickEvent.target
+document.addEventListener("click", (clickEvent) => {
+  const itemClicked = clickEvent.target;
 
-          if (itemClicked.dataset.type === "area") {
-          const areaId = itemClicked.dataset.id
+  if (itemClicked.dataset.type === "area") {
+    const areaId = itemClicked.dataset.id;
 
-          let guestCounter = 0
+    let guestCounter = 0;
 
-          const guests = getGuests()
-          for (const guest of guests) {
-              if (parseInt(areaId) === guest.areaId) [
-                  guestCounter++
-              ]
-          }
-          window.alert(`There are ${guestCounter} guests in this area`)
-      }
+    const guests = getGuests();
+    for (const guest of guests) {
+      if (parseInt(areaId) === guest.areaId) [guestCounter++];
+    }
+    window.alert(`There are ${guestCounter} guests in this area`);
   }
-)
-
+});
 
 export const renderAreas = () => {
   const areas = getAreas();
@@ -63,4 +57,3 @@ export const renderAreas = () => {
   }
   return html;
 };
-
