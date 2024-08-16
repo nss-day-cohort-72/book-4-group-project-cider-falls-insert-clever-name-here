@@ -8,9 +8,10 @@ export const renderGuests = () => {
     for (const guest of guests) {
         html += `<li data-type="guest"
                      data-id="${guest.id}">
-                    ${guest.name}
+                    ${guest.name} test
                 </li>`
     }
 
-    html += "</ul>"
+    html += "</ul>";
+    return html;
 }
