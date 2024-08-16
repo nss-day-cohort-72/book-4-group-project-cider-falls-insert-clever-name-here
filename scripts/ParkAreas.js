@@ -1,4 +1,5 @@
 import { getAreas } from "./database.js"
+import { renderServices } from "./services.js";
 
 
 export const renderAreas = () => {
@@ -10,7 +11,7 @@ export const renderAreas = () => {
                     <h3 class="text-center">${area.name}</h3>
                     <div class="services">
                          <h5 class="">Services</h5> 
-                         <ul class="mx-3">  </ul> 
+                         <ul class="mx-3">${renderServices(area)}  </ul> 
                     </div> 
                 </div>`
     }
