@@ -1,6 +1,6 @@
 import { renderAreas } from "./ParkAreas.js";
 import { renderGuests } from "./Guests.js";
-// import { renderServices } from "./Services.js";
+import { renderServices } from "./Services.js";
 
 const mainContainer = document.querySelector("#container");
 
@@ -15,7 +15,7 @@ const applicationHTML = `
         <div class="areas-container row d-flex justify-content-center mb-5 mx-auto h-100">
             <section id="areas" class="areas col-8 pt-2">
                 <div id="services" class="row d-flex justify-content-center text-center my-2">
-                     <!-- Render all services here -->
+                     ${renderServices}<!-- Render all services here -->
                 </div>
                 ${renderAreas()} <!-- Render all park areas here -->
             </section>

@@ -11,11 +11,8 @@ export const renderServices = (area) => {
                     html += `<li>${service.name}</li>`
 
                 }
-                
             }
-
         }
-        
     }
     return html;
 
