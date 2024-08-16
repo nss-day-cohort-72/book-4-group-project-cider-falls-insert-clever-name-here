@@ -1,4 +1,4 @@
-import { getAreas } from "./database.js";
+import { getAreas, getGuests } from "./database.js";
 import { renderServices} from "./Services.js"
 
 export const renderAreas = () => {
@@ -16,7 +16,9 @@ export const renderAreas = () => {
     //add the area to the current row
     html += `
             <div class="destination col-3"> 
-                <h5 class="text-center">${area.name}</h5>
+                <h5 data-type="area"
+                    data-id="${area.id}"
+                class="text-center">${area.name}</h5>
                 <div class="services">
                     <h6 class="">Services</h6> 
                     <ul class="mx-3">${renderServices(area)}</ul> 
@@ -39,3 +41,28 @@ export const renderAreas = () => {
   }
   return html;
 };
+
+document.addEventListener(
+  "click",
+  (clickEvent) => {
+      const itemClicked = clickEvent.target
+
+
+      if (itemClicked.dataset.type === "area") {
+          const areaId = itemClicked.dataset.id
+
+
+          let guestCounter = 0
+
+
+          const guests = getGuests()
+          for (const guest of guests) {
+              if (parseInt(areaId) === guest.areaId) [
+                  guestCounter++
+              ]
+          }
+          window.alert(`There are ${guestCounter} guests in this area`)
+      }
+  }
+)
+
