@@ -15,6 +15,7 @@ document.addEventListener("click", (clickEvent) => {
         for (const service of services) {
             if (service.name === serviceName) {
                 serviceId = service.id;
+                break;
             }
         }
 
