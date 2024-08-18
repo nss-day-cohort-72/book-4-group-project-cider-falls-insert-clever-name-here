@@ -15,7 +15,6 @@ document.addEventListener("click", (clickEvent) => {
         for (const service of services) {
             if (service.name === serviceName) {
                 serviceId = service.id;
-                break;
             }
         }
 
@@ -38,7 +37,7 @@ document.addEventListener("click", (clickEvent) => {
                 }
             }
 
-            // Display the message
+            // Display message
             window.alert(`${serviceName} is available in ${areaNames.join(", ")}`);
         }
     }
