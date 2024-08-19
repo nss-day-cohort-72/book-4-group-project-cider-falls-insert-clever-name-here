@@ -9,7 +9,7 @@ document.addEventListener("click", (clickEvent) => {
 
     if (targetClicked.dataset.type === "service") {
         const serviceName = targetClicked.textContent;
-        let serviceId = null;
+        let serviceId;
 
         // Find the ID of the clicked service
         for (const service of services) {
@@ -19,43 +19,37 @@ document.addEventListener("click", (clickEvent) => {
             }
         }
 
-        if (serviceId !== null) {
-            const areaIds = [];
-            const areaNames = [];
+        if (serviceId) {
+            let areaIds = [];
 
+            // Find all area IDs where the service is available
             for (const serviceToArea of servicesToArea) {
                 if (serviceToArea.servicesId === serviceId) {
-                    areaIds[areaIds.length] = serviceToArea.areaId;
+                    areaIds.push(serviceToArea.areaId);
                 }
             }
 
+            let areaNames = [];
+
+            // Find names of the areas corresponding to the IDs
             for (const area of areas) {
-                for (const id of areaIds) {
-                    if (area.id === id) {
-                        areaNames[areaNames.length] = area.name;
-                        break;
-                    }
+                if (areaIds.includes(area.id)) {
+                    areaNames.push(area.name);
                 }
             }
 
-            let message = serviceName + " is available in ";
-            for (let i = 0; i < areaNames.length; i++) {
-                if (i > 0) {
-                    message += ", ";
-                }
-                message += areaNames[i];
-            }
-            window.alert(message); 
+            // Display message
+            window.alert(`${serviceName} is available in ${areaNames.join(", ")}`);
         }
     }
 });
 
 export const renderServices = (area) => {
     let html = '';
-    for (const serviceToArea of servicesToArea) {
-        if (area.id === serviceToArea.areaId) {
+    for (const obj of servicesToArea) {
+        if (area.id === obj.areaId) {
             for (const service of services) {
-                if (service.id === serviceToArea.servicesId) {
+                if (service.id === obj.servicesId) {
                     html += `<li>${service.name}</li>`;
                 }
             }
